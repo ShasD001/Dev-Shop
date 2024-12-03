@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Dev Shop</title>
+    <link rel="stylesheet" href="/public/main.css">
+</head>
+<body>
+    <header>
+        <h1>Search Results</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/register">Register</a>
+            <a href="/login">Login</a>
+        </nav>
+    </header>
+    <main>
+        <ul>
+            <% results.forEach(product => { %>
+                <li><%= product.name %> - <%= product.price %></li>
+            <% }); %>
+        </ul>
+    </main>
+</body>
+</html>
