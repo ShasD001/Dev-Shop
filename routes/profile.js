@@ -1,74 +1,71 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcrypt'); // Asegúrate de que bcrypt está importado
 
 module.exports = function(db, app) {
-    // Ruta GET para la página de inicio de sesión
-    router.get('/Login', function (req, res, next) {
-        res.render('login.ejs');
+
+    const redirectLogin = (req, res, next) => {
+        if (!req.session.userId) {
+            res.redirect('../profile/Login'); // redirect to the login page
+        } else { 
+            next(); // move to the next middleware function
+        } 
+    };
+
+    router.get('/search', function(req, res, next) {
+        res.render("search.ejs");
     });
 
-    // Ruta POST para manejar el inicio de sesión
-    router.post('/login', function(req, res) {
-        const { username, password } = req.body;
-      
-        let userQuery = "SELECT * FROM users WHERE username = ?";
-        db.query(userQuery, [username], (err, result) => {
+    router.get('/search_result', function(req, res, next) {
+        // Search the database
+        let sqlquery = "SELECT * FROM products WHERE name LIKE '%" + req.query.search_text + "%'"; // query database to get all the products
+        // execute sql query
+        db.query(sqlquery, (err, result) => {
             if (err) {
-                console.error(err);
-                res.status(500).send('Internal Server Error');
-                return;
+                next(err);
             }
-            
-            if (result.length === 0) {
-                res.send('Invalid username or password');
-                return;
-            }
-    
-            // Aquí tomas la contraseña cifrada de la base de datos
-            const hashedPassword = result[0].hashedPassword;
-    
-            // Comparar la contraseña proporcionada con la contraseña en la base de datos
-            bcrypt.compare(password, hashedPassword, function(err, isMatch) {
-                if (err) {
-                    console.error(err);
-                    res.status(500).send('Internal Server Error');
-                    return;
-                }
-    
-                if (isMatch) {
-                    // La contraseña es correcta, puedes iniciar sesión
-                    req.session.loggedInUser = result[0];
-                    console.log(hashedPassword," the hashed password not match")
-                    console.log("login",username)
-                    req.session.userId = req.body.username;
-                    res.redirect('./profile'); // Redirigir a la página de perfil
-                } else {
-                    // La contraseña es incorrecta
-                    res.send('Invalid username or password');
-                }
-            });
+            res.render("list.ejs", {availableProducts: result});
         });
     });
 
-    router.get('/profile', function (req,res) {
-        res.render('profile.ejs');                                                                     
+    router.get('/list', redirectLogin, function(req, res, next) {
+        let sqlquery = "SELECT * FROM products"; // query database to get all the products
+        // execute sql query
+        db.query(sqlquery, (err, result) => {
+            if (err) {
+                next(err);
+            }
+            res.render("list.ejs", {availableProducts: result});
+        });
     });
 
-    app.get('/logout', function(req, res) {
-    // Destruir la sesión
-    req.session.destroy(err => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send('Error al cerrar sesión.'); // Manejo de error
-        }
-        // Redirigir a la página de inicio
-        console.log("cerrar secion")
-        res.redirect('/'); // Asegúrate de que esto sea la ruta correcta a tu página de inicio
+    router.get('/addproduct', redirectLogin, function(req, res, next) {
+        res.render('additem.ejs');
     });
-});
 
+    router.post('/productadded', function(req, res, next) {
+        // saving data in database
+        let sqlquery = "INSERT INTO products (name, category, price, description) VALUES (?,?,?,?)";
+        // execute sql query
+        let newrecord = [req.body.name, req.body.category, req.body.price, req.body.description];
+        db.query(sqlquery, newrecord, (err, result) => {
+            if (err) {
+                next(err);
+            } else {
+                res.send(' This product is added to database, name: ' + req.body.name + ', category: ' + req.body.category + ', price: ' + req.body.price + ', description: ' + req.body.description);
+            }
+        });
+    });
 
+    router.get('/bargainproducts', function(req, res, next) {
+        let sqlquery = "SELECT * FROM products WHERE price < 20";
+        db.query(sqlquery, (err, result) => {
+            if (err) {
+                next(err);
+            }
+            res.render("bargains.ejs", {availableProducts: result});
+        });
+    });
 
-    return router; // Retorna el router aquí para la exportación
-};
+    return router;
+}
+// Export the router object so index.js can access it
