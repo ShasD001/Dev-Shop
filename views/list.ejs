@@ -2,16 +2,16 @@
 <html>
   <head>
     <title>Welcome to <%=shopData.shopName%></title>
-    <link rel="stylesheet"  type="text/css" href="/main.css" />
+    <link rel="stylesheet" type="text/css" href="/main.css" />
   </head>
   <body>
     <h1><%=shopData.shopName%> Shop</h1>
     <h2>Here are the amazing Dev/Game tools that we sell:</h2>
     <ul>
-      <% availableBooks.forEach(function(book) { %>
-        <li><%= book.name %>, £<%=book.price%> - <%=book.author%> - <%=book.publisher%> - <%=book.publication_date%> 
-         </li>
+      <% availableProducts.forEach(function(product) { %>
+        <li><%= product.name %>, £<%=product.price%> - <%=product.category%> - <%=product.description%> 
+        </li>
       <% }) %>
     </ul>
-    </body>
+  </body>
 </html>
