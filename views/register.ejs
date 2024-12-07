@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Register for <%=shopData.shopName%></title>
+    <link rel="stylesheet"  type="text/css" href="/main.css" />
+    <!-- Bootstrap CSS (si no está incluido) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Bundle con JavaScript (incluye Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  </head>
+  <body>
+    <h1>Register for <%=shopData.shopName%></h1>
+    <form method="POST" action="registered">
+        <p>First name: <input id="first" type="text" name="first" value="<% if(typeof valores != 'undefined') { %> <%= valores.first %><%}%>" /></p>
+        <p>Last name: <input id="last" type="text" name="last"value="<% if(typeof valores != 'undefined') { %> <%= valores.last %><%}%>" /></p>
+        <p>User name: <input id="username" type="text" name="username"value="<% if(typeof valores != 'undefined') { %> <%= valores.username %><%}%>" ></p>
+        <p>Email: <input id="email" type="text" name="email"value="<% if(typeof valores != 'undefined') { %> <%= valores.email %><%}%>" /></p>
+        <p>Password: <input id="password"  type="password" name="password"value="<% if(typeof valores != 'undefined') { %> <%= valores.password %><%}%>" ></p>
+        <input type="submit" value="Register" />
+      </form>
+    <%if(typeof validaciones != 'undefined'){ %>
+      <% validaciones.forEach((validacion)=> { %>
+       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong> <%=  validacion.msg %> </strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div> 
+      <% }) %>
+    <% } %> 
+  </body>
+</html>
