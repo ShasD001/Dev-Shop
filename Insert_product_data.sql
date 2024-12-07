@@ -1,8 +1,8 @@
 # Insert data into the tables
 
-USE shoppingdb;
+USE products.db;
 
-INSERT INTO products (name, category, price, description, image_url) VALUES
+INSERT INTO products (name, category, price, description ) VALUES
 ('NVIDIA GeForce RTX 3080', 'GPU', 699.99, 'High-performance graphics card for gaming and professional use.'),
 ('AMD Ryzen 9 5900X', 'CPU', 549.99, 'Powerful 12-core processor for demanding applications'),
 ('Intel Core i9-11900K', 'CPU', 529.99, 'High-end 8-core processor for gaming and productivity.'),
