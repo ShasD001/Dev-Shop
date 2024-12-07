@@ -1,15 +1,17 @@
 <!doctype html>
 <html>
   <head>
-    <title>Add book to <%=shopData.shopName%></title>
-    <link rel="stylesheet"  type="text/css" href="/main.css" />
+    <title>Add product to <%=shopData.shopName%></title>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
   </head>
   <body>
-    <h1><%=shopData.shopName%>: Add book</h1>
-    <form method="POST" action="/bookadded">
-        <p>Book name: <input id="name" type="text" name="name" value="" /></p>
+    <h1><%=shopData.shopName%>: Add product</h1>
+    <form method="POST" action="/productadded">
+        <p>Product name: <input id="name" type="text" name="name" value="" /></p>
+        <p>Category: <input id="category" type="text" name="category" value="" /></p>
         <p>Price: <input id="price" type="text" name="price" value="" /></p>
-        <input type="submit" value="Add Book" />
+        <p>Description: <input id="description" type="text" name="description" value="" /></p>
+        <input type="submit" value="Add Product" />
       </form>
   </body>
 </html>
