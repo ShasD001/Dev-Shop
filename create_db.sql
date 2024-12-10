@@ -1,13 +1,14 @@
-# Create database script for Dev-Shop
+-- Create the database
+CREATE DATABASE IF NOT EXISTS products;
 
-# Create the database
-CREATE DATABASE IF NOT EXISTS products.db;
-USE products.db;
+-- Use the database
+USE products;
 
-# Create the tables
+-- Create products table
 CREATE TABLE IF NOT EXISTS products (
     id INT AUTO_INCREMENT,
     name VARCHAR(50),
+    category VARCHAR(50),
     price DECIMAL(5, 2),
     author VARCHAR(50),
     publisher VARCHAR(50),
@@ -15,6 +16,7 @@ CREATE TABLE IF NOT EXISTS products (
     PRIMARY KEY (id)
 );
 
+-- Create users table
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -26,6 +28,7 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-# Create the app user
-CREATE USER IF NOT EXISTS 'products_app_user'@'localhost' IDENTIFIED BY 'qwertyuiop'; 
-GRANT ALL PRIVILEGES ON products.db.* TO 'products_app_user'@'localhost';
+-- Create and grant privileges to the user
+CREATE USER IF NOT EXISTS 'products_app_user'@'localhost' IDENTIFIED BY 'Shastrid001';
+GRANT ALL PRIVILEGES ON products.* TO 'products_app_user'@'localhost';
+FLUSH PRIVILEGES;
