@@ -1,6 +1,6 @@
 # Insert data into the tables
 
-USE products.db;
+USE products;
 
 INSERT INTO products (name, price, description ) VALUES
 ('NVIDIA GeForce RTX 3080', 699.99, 'High-performance graphics card for gaming and professional use.'),
