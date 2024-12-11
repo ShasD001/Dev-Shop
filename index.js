@@ -33,7 +33,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'products_app_user',  // Updated user
     password: 'qwertyuiop',
-    database: 'products.db'  // Updated database
+    database: 'products'  // Updated database
 });
 // Connect to the database
 db.connect((err) => {
