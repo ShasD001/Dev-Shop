@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Dev Shop</title>
-    <link rel="stylesheet"  type="text/css" href="/public/main.css">
+    <link rel="stylesheet" type="text/css" href="/public/main.css">
 </head>
 <body>
     <header>
         <h1>About Dev Shop</h1>
         <nav>
             <a href="/">Home</a>
-            <a href="/about">About</a>
+            <a href="/about" class="active">About</a>
             <a href="/login">Login</a>
-            <a href="/views/addItem.ejs">add items</a>
-            <a href="/views/index.ejs">home</a>
-            <a href="/views/list.ejs">products</a>
-            <a href="/views/profile.ejs">your account</a>
-            <a href="/views/register.ejs">register</a>
-            <a href="/views/search_results.ejs">search</a>
-            <a href="/views/todayssale.ejs">onsale</a>
-            <a href="/views/userlist.ejs">userlist</a>
+            <a href="/additem">Add Items</a>
+            <a href="/list">Products</a>
+            <a href="/profile">Your Account</a>
+            <a href="/register">Register</a>
+            <a href="/todayssale">On Sale</a>
         </nav>
     </header>
     <main>
         <p>Welcome to Dev Shop, your go-to destination for the best development tools and resources.</p>
+        
+        <h2>Currency Conversion</h2>
+        <p>Conversion rate from <%= fromCurrency %> to <%= toCurrency %>: <%= rate %></p>
     </main>
 </body>
 </html>
