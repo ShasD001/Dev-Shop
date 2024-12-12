@@ -61,6 +61,7 @@ app.use('/users', usersRoutes);
 const productsRoutes = require('./routes/product')(db, app);  // Updated to /products
 app.use('/products', productsRoutes);
 
+// load the rout handlers for /profile
 const profileRoutes = require('./routes/profile')(db, app);
 app.use('/profile', profileRoutes);
 

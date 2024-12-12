@@ -29,6 +29,6 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 -- Create and grant privileges to the user
-CREATE USER IF NOT EXISTS 'products_app_user'@'localhost' IDENTIFIED BY 'Shastrid001';
+CREATE USER IF NOT EXISTS 'products_app_user'@'localhost' IDENTIFIED BY 'qwertyuiop';
 GRANT ALL PRIVILEGES ON products.* TO 'products_app_user'@'localhost';
 FLUSH PRIVILEGES;
