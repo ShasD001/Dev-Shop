@@ -1,17 +1,30 @@
-<!doctype html>
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to <%=shopData.shopName%></title>
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-  </head>
-  <body>
-    <h1><%=shopData.shopName%> Shop</h1>
-    <h2>Here are the amazing Dev/Game tools that we sell:</h2>
-    <ul>
-      <% availableProducts.forEach(function(product) { %>
-        <li><%= product.name %>, £<%=product.price%> - <%=product.category%> - <%=product.description%> 
-        </li>
-      <% }) %>
-    </ul>
-  </body>
+    <link rel="stylesheet" type="text/css" href="/public/main.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/list">Products</a>
+            <a href="/additem">Add Item</a>
+            <a href="/profile">Your Account</a>
+            <a href="/about">About</a>
+            <a href="/todayssale">On Sale</a>
+        </nav>
+    </header>
+    <main>
+        <h1><%=shopData.shopName%> Shop</h1>
+        <h2>Here are the amazing Dev/Game tools that we sell:</h2>
+        <ul>
+            <% availableProducts.forEach(function(product) { %>
+                <li><%= product.name %>, £<%= product.price %> - <%= product.category %> - <%= product.description %></li>
+            <% }) %>
+        </ul>
+    </main>
+</body>
 </html>

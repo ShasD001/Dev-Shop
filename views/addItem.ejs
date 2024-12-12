@@ -1,17 +1,43 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Add product to <%=shopData.shopName%></title>
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-  </head>
-  <body>
-    <h1><%=shopData.shopName%>: Add product</h1>
-    <form method="POST" action="/productadded">
-        <p>Product name: <input id="name" type="text" name="name" value="" /></p>
-        <p>Category: <input id="category" type="text" name="category" value="" /></p>
-        <p>Price: <input id="price" type="text" name="price" value="" /></p>
-        <p>Description: <input id="description" type="text" name="description" value="" /></p>
-        <input type="submit" value="Add Product" />
-      </form>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product to <%=shopData.shopName%></title>
+    <link rel="stylesheet" type="text/css" href="/public/main.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/list">Products</a>
+            <a href="/additem">Add Item</a>
+            <a href="/profile">Your Account</a>
+            <a href="/about">About</a>
+            <a href="/todayssale">On Sale</a>
+        </nav>
+    </header>
+    <main>
+        <h1><%=shopData.shopName%>: Add Product</h1>
+        <form method="POST" action="/productadded">
+            <p>
+                <label for="name">Product name:</label>
+                <input id="name" type="text" name="name" required>
+            </p>
+            <p>
+                <label for="category">Category:</label>
+                <input id="category" type="text" name="category" required>
+            </p>
+            <p>
+                <label for="price">Price:</label>
+                <input id="price" type="text" name="price" required>
+            </p>
+            <p>
+                <label for="description">Description:</label>
+                <input id="description" type="text" name="description" required>
+            </p>
+            <p><input type="submit" value="Add Product"></p>
+        </form>
+    </main>
+</body>
 </html>

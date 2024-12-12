@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
@@ -39,12 +40,19 @@ module.exports = function(db, app) {
     });
 
     router.get('/additem', function(req, res, next) {
-        res.render('additem.ejs', { shopData: app.locals.shopData });
+        res.render('addItem.ejs', { shopData: app.locals.shopData });
     });
 
     router.get('/list', function(req, res, next) {
-        res.render('list.ejs', { shopData: app.locals.shopData });
+        let sqlquery = "SELECT * FROM products"; // query database to get all the products
+        db.query(sqlquery, (err, result) => {
+            if (err) {
+                return next(err);
+            }
+            res.render('list.ejs', { availableProducts: result, shopData: app.locals.shopData });
+        });
     });
+    
 
     router.get('/login', function(req, res, next) {
         res.render('login.ejs', { shopData: app.locals.shopData });
@@ -55,15 +63,27 @@ module.exports = function(db, app) {
     });
 
     router.get('/todayssale', function(req, res, next) {
-        res.render('todayssale.ejs', { shopData: app.locals.shopData });
+        let sqlquery = "SELECT * FROM products WHERE sale = 1"; // Assuming you have a 'sale' column in your products table
+        db.query(sqlquery, (err, result) => {
+            if (err) {
+                return next(err);
+            }
+            res.render('todayssale.ejs', { availableProducts: result, shopData: app.locals.shopData });
+        });
     });
+    
 
     router.get('/register', function(req, res, next) {
         res.render('register.ejs', { shopData: app.locals.shopData });
+    });
+
+    // Error handling for all routes
+    router.use((err, req, res, next) => {
+        console.error(err.stack);
+        res.status(500).send('Something broke!');
     });
 
     return router;
 }
 
 // Export the router object so index.js can access it
-

@@ -1,17 +1,33 @@
-<!doctype html>
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About <%=shopData.shopName%></title>
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-  </head>
-  <body>
-    <h1>About <%=shopData.shopName%></h1>
-    <p>Welcome!</p>
-
-    <p><a href="/products/search">Search for products</a></p>
-    <p><a href="/products/addproduct">Add a new product</a></p>
-    <p><a href="/products/bargainproducts">Bargain products</a></p>
-    <p><a href="/users/list">List users</a></p>
-    <p><a href="/logout">Logout</a></p>
-  </body>
+    <link rel="stylesheet" type="text/css" href="/public/main.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/list">Products</a>
+            <a href="/additem">Add Item</a>
+            <a href="/profile">Your Account</a>
+            <a href="/todayssale">On Sale</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <h1>About <%=shopData.shopName%></h1>
+        <p>Welcome!</p>
+        <ul>
+            <li><a href="/products/search">Search for products</a></li>
+            <li><a href="/products/addproduct">Add a new product</a></li>
+            <li><a href="/products/bargainproducts">Bargain products</a></li>
+            <li><a href="/users/list">List users</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </main>
+</body>
 </html>

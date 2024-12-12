@@ -1,18 +1,37 @@
-<!doctype html>
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in to <%=shopData.shopName%></title>
-    <link rel="stylesheet" type="text/css" href="/main.css" />
-  </head>
-  <body>
-    <h1>Welcome</h1>
-    <h2>Log in here!</h2>
-    <form method="POST" action="/profile/login">
-      <p>Username: <input id="username" type="text" name="username" placeholder="Username" /></p>
-      <p>Password: <input id="password" type="password" name="password" placeholder="******" /></p>
-      <input type="submit" value="Login"/>
-    </form>
-    <p><a href="/users/list">List users</a></p>
-    <p><a href="/users/register">Register</a></p>
-  </body>
+    <link rel="stylesheet" type="text/css" href="/public/main.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/list">Products</a>
+            <a href="/register">Register</a>
+            <a href="/profile">Your Account</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Welcome</h1>
+        <h2>Log in here!</h2>
+        <form method="POST" action="/profile/login">
+            <p>
+                <label for="username">Username:</label>
+                <input id="username" type="text" name="username" placeholder="Username" required>
+            </p>
+            <p>
+                <label for="password">Password:</label>
+                <input id="password" type="password" name="password" placeholder="******" required>
+            </p>
+            <p><input type="submit" value="Login"></p>
+        </form>
+        <p><a href="/users/list">List users</a></p>
+        <p><a href="/users/register">Register</a></p>
+    </main>
+</body>
 </html>
