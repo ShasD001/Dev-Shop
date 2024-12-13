@@ -62,7 +62,7 @@ module.exports = function(db, app) {
             if (err) {
                 next(err);
             }
-            res.render("bargains.ejs", {availableProducts: result});
+            res.render("todayssale.ejs", {availableProducts: result});
         });
     });
 
